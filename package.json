@@ -6,12 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "model-generate": "env-cmd sequelize-cli model:generate",
+    "seed": "env-cmd sequelize db:seed:all",
+    "migrate": "env-cmd sequelize-cli db:migrate",
+    "migrate-rollback": "env-cmd sequelize-cli db:migrate:undo",
+    "migrate:rollback:all": "env-cmd sequelize-cli db:migrate:undo:all"
   },
   "dependencies": {
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.7.0",
     "next": "13.5.5",
     "next-auth": "^4.24.3",
     "pg": "^8.11.3",
+    "prettier": "^2.5.1",
     "react": "^18",
     "react-dom": "^18",
     "sequelize": "^6.33.0"
