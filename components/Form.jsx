@@ -1,11 +1,6 @@
 import Link from "next/link";
 
 const Form = (props) => {
-  // type
-  // post
-  // setPost
-  // submitting
-  // handleSubmit
   return (
     <div>
       <section className="w-full max-w-full flex-start flex-col">
@@ -37,7 +32,6 @@ const Form = (props) => {
             required
             className="form_textarea"
           />
-
           <label>
             <span className="font-satoshi text-base text-grey-700">
               Prompt Field/Tag{" "}
@@ -46,31 +40,29 @@ const Form = (props) => {
               </span>
             </span>
           </label>
-
           <textarea
             value={props.post.tag}
             onChange={(e) =>
-              props.setPost({ ...props.tag, tag: e.target.value })
+              props.setPost({ ...props.post, tag: e.target.value })
             }
             placeholder="write your tag here..."
             required
             className="form_input"
           />
+          <div className="flex-end mx-3 mb-5 gap-4">
+            <Link href="/" className=" text-black-500 text-sm">
+              Cancel
+            </Link>
+
+            <button
+              type="submit"
+              disabled={props.submitting}
+              className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+            >
+              {props.submitting ? `${props.type}...` : props.type}
+            </button>
+          </div>
         </form>
-
-        <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/" className=" text-gray-500 text-sm">
-            Cancel
-          </Link>
-
-          <button
-            type="submit"
-            disabled={props.submitting}
-            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
-          >
-            {props.submitting ? `${props.type}...` : props.type}
-          </button>
-        </div>
       </section>
     </div>
   );
