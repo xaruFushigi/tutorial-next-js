@@ -4,21 +4,18 @@ import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
+  console.log(data);
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
-        <PromptCard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
+        <PromptCard key={post.id} post={post} handleTagClick={handleTagClick} />
       ))}
     </div>
   );
 };
 
 const Feed = () => {
-  const [allPosts, setAllPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
   // Search states
   const [searchText, setSearchText] = useState("");
 
@@ -27,7 +24,7 @@ const Feed = () => {
   const fetchPost = async () => {
     const response = await fetch("/api/prompt");
     const data = await response.json();
-    setAllPosts(data);
+    setPosts(data);
   };
   useEffect(() => {
     fetchPost();
@@ -43,10 +40,10 @@ const Feed = () => {
           onChange={handleSearchChange}
           required
           className="search_input peer"
-        ></input>
+        />
       </form>
 
-      <PromptCardList data={[allPosts]} handleTagClick={() => {}} />
+      <PromptCardList data={[posts]} handleTagClick={() => {}} />
     </section>
   );
 };

@@ -1,19 +1,22 @@
 import { Schema, model, models } from "mongoose";
 
-const PromptSchema = new Schema({
-  creator: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+const PromptSchema = new Schema(
+  {
+    creator: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    prompt: {
+      type: String,
+      required: [true, "Prompt is required"],
+    },
+    tag: {
+      type: String,
+      require: [true, "Tag is required"],
+    },
   },
-  prompt: {
-    type: String,
-    required: [true, "Prompt is required"],
-  },
-  tag: {
-    type: String,
-    require: [true, "Tag is required"],
-  },
-});
+  { collection: "users" }
+); // Specify the collection name as "users"
 
 const Prompt = models.Prompt || model("Prompt", PromptSchema);
 
